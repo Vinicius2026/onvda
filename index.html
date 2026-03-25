@@ -56,8 +56,8 @@
 
     <!-- Subtle Background Glow -->
     <div class="fixed inset-0 pointer-events-none z-[-1]">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-orange/10 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-gold/10 rounded-full blur-[120px]">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-orange/10 rounded-full md:blur-[120px] blur-[60px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-gold/10 rounded-full md:blur-[120px] blur-[60px]">
         </div>
     </div>
 
@@ -209,7 +209,7 @@
             <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
 
             <!-- Dynamic Dark Overlay -->
-            <div id="hero-overlay" class="absolute inset-0 bg-brand-dark/40 z-10 transition-colors duration-100"></div>
+            <div id="hero-overlay" class="absolute inset-0 bg-brand-dark z-10 transition-opacity duration-100" style="opacity: 0.4; will-change: opacity;"></div>
         </div>
 
         <!-- Centered Content -->
@@ -383,11 +383,11 @@
                             
                             
                             <!-- Card 1 -->
-                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-xl rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
                                 <!-- Elegant Top Edge Inner Highlight -->
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100 mix-blend-screen"></div>
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
                                 <!-- Ambient Soft Orange Glow Source at the Top -->
-                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0 mix-blend-screen"></div>
+                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0"></div>
 
                                 <h4 class="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
                                     Vendas no<br />
@@ -396,8 +396,8 @@
 
                                 <div class="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
                                     <!-- Subtle Radial Light behind the image to eliminate boxy edges entirely -->
-                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none mix-blend-screen"></div>
-                                    <img src="./capas bonus/1.webp" alt="Vendas no WhatsApp" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10">
+                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                    <img src="./capas bonus/1.webp" alt="Vendas no WhatsApp" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async">
                                 </div>
 
                                 <p class="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -408,9 +408,9 @@
                             </div>
 
                             <!-- Card 2 -->
-                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-xl rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100 mix-blend-screen"></div>
-                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0 mix-blend-screen"></div>
+                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0"></div>
 
                                 <h4 class="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
                                     Produtos<br />
@@ -418,8 +418,8 @@
                                 </h4>
 
                                 <div class="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
-                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none mix-blend-screen"></div>
-                                    <img src="./capas bonus/2.webp" alt="Produtos Lucrativos" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10">
+                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                    <img src="./capas bonus/2.webp" alt="Produtos Lucrativos" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async">
                                 </div>
 
                                 <p class="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -430,9 +430,9 @@
                             </div>
 
                             <!-- Card 3 -->
-                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-xl rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100 mix-blend-screen"></div>
-                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0 mix-blend-screen"></div>
+                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0"></div>
 
                                 <h4 class="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
                                     Material de<br />
@@ -440,8 +440,8 @@
                                 </h4>
 
                                 <div class="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
-                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none mix-blend-screen"></div>
-                                    <img src="./capas bonus/3.webp" alt="Material de Apoio" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10">
+                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                    <img src="./capas bonus/3.webp" alt="Material de Apoio" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async">
                                 </div>
 
                                 <p class="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -452,9 +452,9 @@
                             </div>
 
                             <!-- Card 4 -->
-                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-xl rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100 mix-blend-screen"></div>
-                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0 mix-blend-screen"></div>
+                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0"></div>
 
                                 <h4 class="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
                                     Estratégias de<br />
@@ -462,8 +462,8 @@
                                 </h4>
 
                                 <div class="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
-                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none mix-blend-screen"></div>
-                                    <img src="./capas bonus/4.webp" alt="Estratégias de Venda" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10">
+                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                    <img src="./capas bonus/4.webp" alt="Estratégias de Venda" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async">
                                 </div>
 
                                 <p class="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -474,9 +474,9 @@
                             </div>
 
                             <!-- Card 5 -->
-                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-xl rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100 mix-blend-screen"></div>
-                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0 mix-blend-screen"></div>
+                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0"></div>
 
                                 <h4 class="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
                                     Fluxo de<br />
@@ -484,8 +484,8 @@
                                 </h4>
 
                                 <div class="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
-                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none mix-blend-screen"></div>
-                                    <img src="./capas bonus/5.webp" alt="Fluxo de Clientes" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10">
+                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                    <img src="./capas bonus/5.webp" alt="Fluxo de Clientes" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async">
                                 </div>
 
                                 <p class="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -496,9 +496,9 @@
                             </div>
 
                             <!-- Card 6 -->
-                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-xl rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100 mix-blend-screen"></div>
-                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0 mix-blend-screen"></div>
+                            <div class="carousel-card shrink-0 w-[30vw] min-w-[110px] sm:w-[300px] snap-center relative bg-[#090C15]/90 backdrop-blur-sm rounded-[20px] p-3 md:p-5 border border-white/5 flex flex-col transition-all duration-700 shadow-[0_15px_30px_rgba(0,0,0,0.4)] group overflow-hidden cursor-default">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-brand-orange/0 to-transparent group-hover:via-brand-orange/80 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+                                <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-orange/15 rounded-full blur-[40px] pointer-events-none group-hover:bg-brand-orange/30 transition-colors duration-700 z-0"></div>
 
                                 <h4 class="text-[10px] sm:text-sm font-medium mb-3 sm:mb-4 relative z-10 text-slate-300 tracking-wide text-center leading-tight transition-colors duration-500">
                                     Fidelização e<br />
@@ -506,8 +506,8 @@
                                 </h4>
 
                                 <div class="w-full h-[75px] sm:h-[130px] relative z-10 flex justify-center items-center mb-3 sm:mb-5 transition-transform duration-700">
-                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none mix-blend-screen"></div>
-                                    <img src="./capas bonus/6.webp" alt="Fidelização e Recompra" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10">
+                                    <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-[30px] rounded-full transition-all duration-700 transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                                    <img src="./capas bonus/6.webp" alt="Fidelização e Recompra" class="w-full h-full object-contain filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_10px_25px_rgba(249,115,22,0.35)] transition-all duration-700 relative z-10" loading="lazy" decoding="async">
                                 </div>
 
                                 <p class="text-slate-400 text-[9px] sm:text-xs relative z-10 pb-0 font-light leading-[1.3] text-center mt-auto w-full transition-all duration-500 group-hover:text-slate-200">
@@ -534,7 +534,7 @@
     <section id="dashboard-presentation" class="w-full pt-20 sm:pt-28 pb-12 sm:pb-16 relative overflow-hidden flex flex-col items-center bg-[#060913]">
         
         <!-- Deep cyan ambient glow -->
-        <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#00e5ff]/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+        <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#00e5ff]/5 rounded-full md:blur-[100px] blur-[50px] pointer-events-none z-0"></div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 w-full text-center flex flex-col items-center">
             
@@ -567,7 +567,7 @@
                         <span class="w-2 h-2 rounded-full bg-yellow-500/40"></span>
                         <span class="w-2 h-2 rounded-full bg-green-500/40"></span>
                     </div>
-                    <img src="./dentro da vda/produto-dashboard-review.webp" alt="Dashboard Back" class="w-full h-auto object-cover">
+                    <img src="./dentro da vda/produto-dashboard-review.webp" alt="Dashboard Back" class="w-full h-auto object-cover" loading="lazy" decoding="async">
                     <!-- Fading bottom so it blends into the background -->
                     <div class="absolute inset-0 bg-gradient-to-t from-[#060913] via-transparent to-transparent"></div>
                 </div>
@@ -597,7 +597,7 @@
                 <!-- 3. Right Content Card (Flow Mockup) -->
                 <div class="absolute bottom-12 sm:bottom-24 right-0 sm:right-4 w-[180px] sm:w-[320px] bg-[#0A0D14] rounded-xl sm:rounded-2xl border border-[#00e5ff]/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-40 transform hover:-translate-y-2 transition-transform duration-500">
                     <div class="w-full relative rounded-lg overflow-hidden border border-white/5 bg-[#060913]">
-                        <img src="./blvda img/vda-fluxo-vendas.webp" alt="Fluxo de Vendas VDA" class="w-full h-auto object-cover">
+                        <img src="./blvda img/vda-fluxo-vendas.webp" alt="Fluxo de Vendas VDA" class="w-full h-auto object-cover" loading="lazy" decoding="async">
                         <!-- Progress bar mimicking reference -->
                         <div class="absolute bottom-0 left-0 w-full h-1.5 sm:h-2 bg-white/10">
                             <div class="h-full bg-[#00e5ff] w-[100%] shadow-[0_0_10px_rgba(0,229,255,0.6)]"></div>
@@ -654,7 +654,7 @@
 
         <!-- Glowing Core Background behind offer -->
         <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none z-0">
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/10 rounded-full md:blur-[120px] blur-[60px] pointer-events-none z-0">
         </div>
 
         <!-- Mystic Floating Particle (Background Animation) -->
@@ -775,7 +775,7 @@
                         
                         <!-- Imagem do Bônus Responsiva Centralizada -->
                         <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
-                            <img src="./capas bonus/b1.webp" alt="Capa Bônus 1" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                            <img src="./capas bonus/b1.webp" alt="Capa Bônus 1" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]" loading="lazy" decoding="async">
                         </div>
                         
                         <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 01</span>
@@ -810,7 +810,7 @@
                         
                         <!-- Imagem do Bônus Responsiva Centralizada -->
                         <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
-                            <img src="./capas bonus/b2.webp" alt="Capa Bônus 2" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                            <img src="./capas bonus/b2.webp" alt="Capa Bônus 2" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]" loading="lazy" decoding="async">
                         </div>
                         
                         <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 02</span>
@@ -845,7 +845,7 @@
                         
                         <!-- Imagem do Bônus Responsiva Centralizada -->
                         <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
-                            <img src="./capas bonus/b3.webp" alt="Capa Bônus 3" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                            <img src="./capas bonus/b3.webp" alt="Capa Bônus 3" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]" loading="lazy" decoding="async">
                         </div>
                         
                         <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 03</span>
@@ -880,7 +880,7 @@
                         
                         <!-- Imagem do Bônus Responsiva Centralizada -->
                         <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
-                            <img src="./capas bonus/b4.webp" alt="Capa Bônus 4" class="w-60 sm:w-72 lg:w-64 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                            <img src="./capas bonus/b4.webp" alt="Capa Bônus 4" class="w-60 sm:w-72 lg:w-64 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]" loading="lazy" decoding="async">
                         </div>
                         
                         <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 04</span>

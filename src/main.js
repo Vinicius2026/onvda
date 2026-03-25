@@ -96,38 +96,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const frameCount = 40;
     const images = new Array(frameCount);
 
-    // Set internal canvas resolution to standard 1080p horizontal layout
-    canvas.width = 1920;
-    canvas.height = 1080;
+    // Set internal canvas resolution based on device
+    const isMobileDevice = window.innerWidth < 768;
+    canvas.width = isMobileDevice ? window.innerWidth * window.devicePixelRatio : 1920;
+    canvas.height = isMobileDevice ? window.innerHeight * window.devicePixelRatio : 1080;
 
     const getFramePath = index => (
         `./banner home vda astronauta 1/Astronaut_standing_in_ocean_delpmaspu__${index.toString().padStart(3, '0')}.webp`
     );
 
     const preloadImages = () => {
-        // Load only the first frame instantly to avoid blocking Initial Contentful Paint
         const firstImg = new Image();
         firstImg.src = getFramePath(0);
         firstImg.onload = () => {
             context.drawImage(firstImg, 0, 0, canvas.width, canvas.height);
             images[0] = firstImg;
 
-            // Schedule the rest of the images to load asynchronously without freezing the UI
             setTimeout(() => {
                 for (let i = 1; i < frameCount; i++) {
                     const img = new Image();
                     img.src = getFramePath(i);
-                    images[i] = img;
+                    img.onload = () => {
+                        // Pre-scale for mobile to save paint time during scroll
+                        if (isMobileDevice && window.OffscreenCanvas) {
+                            const oc = new OffscreenCanvas(canvas.width, canvas.height);
+                            const ctx = oc.getContext('2d', { alpha: false });
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            images[i] = oc;
+                        } else {
+                            images[i] = img;
+                        }
+                    };
                 }
-            }, 300); // 300ms breather for the UI thread
+            }, 300);
         };
     };
 
     let activeFrameIndex = 0;
     const drawFrame = (index) => {
         if (!images[index] || activeFrameIndex === index) return;
-        // Verify it's actually loaded before painting
-        if (images[index].complete && images[index].naturalHeight !== 0) {
+        
+        // For OffscreenCanvas or Image that is loaded
+        if (images[index].width > 0 || images[index].naturalHeight !== 0) {
             context.drawImage(images[index], 0, 0, canvas.width, canvas.height);
             activeFrameIndex = index;
         }
@@ -160,11 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         drawFrame(frameIndex);
 
-        // Darken overlay as the user scrolls (from 40% up to 95%) 
-        // to smoothly transition into the next dark section
+        // Darken overlay as the user scrolls to smoothly transition into the next dark section
+        // Uses opacity for GPU composite acceleration instead of backgroundColor
         if (overlay) {
-            const currentOpacity = 0.4 + (scrollFraction * 0.55);
-            overlay.style.backgroundColor = `rgba(11, 15, 25, ${currentOpacity})`;
+            // we calculate the target opacity over the base bg-opacity-40
+            // but the element starts with bg-brand-dark/40. 
+            // We can just add another dark element or just change opacity.
+            // Since it already has bg-brand-dark/40 (opacity 0.4), let's just 
+            // set its style.opacity if we change it to be solid bg-brand-dark!
+            // Wait, changing opacity is much faster.
+            const targetOpacity = 0.4 + (scrollFraction * 0.55);
+            overlay.style.opacity = targetOpacity;
         }
 
         // Apply smooth parallax effect
