@@ -128,9 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateScrollAnimation = () => {
         if (!heroContainer) return;
 
-        const scrollTop = window.scrollY;
-        // Bind frame scrub to 80% of window height for a fluid natural tempo
-        const maxScroll = window.innerHeight * 0.8;
+        // Prevent negative values from iOS bounce effect
+        const scrollTop = Math.max(0, window.scrollY);
+        const isMobile = window.innerWidth < 768;
+
+        // Stretch the scroll distance on mobile so a single swipe doesn't rush all 40 frames
+        const scrollMultiplier = isMobile ? 1.5 : 0.8;
+        const maxScroll = Math.max(window.innerHeight * scrollMultiplier, 600);
 
         // Progress bounded from 0 to 1
         let scrollFraction = scrollTop / maxScroll;
@@ -151,10 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.backgroundColor = `rgba(11, 15, 25, ${currentOpacity})`;
         }
 
-        // Apply smooth parallax effect (moves down at 40% the scroll speed)
-        // Keeps the background in view a little longer while scrolling
+        // Apply smooth parallax effect
+        // Disable parallax transform on mobile to prevent extreme GPU repaint lag mixed with Canvas drawing
         if (heroBgWrapper) {
-            heroBgWrapper.style.transform = `translate3d(0, ${scrollTop * 0.4}px, 0)`;
+            if (isMobile) {
+                heroBgWrapper.style.transform = `translate3d(0, 0, 0)`;
+            } else {
+                heroBgWrapper.style.transform = `translate3d(0, ${scrollTop * 0.4}px, 0)`;
+            }
         }
     };
 
