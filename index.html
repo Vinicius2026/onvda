@@ -1172,12 +1172,9 @@
 
                 <!-- Text side -->
                 <div class="flex-1 text-left">
-                    <h2 class="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">
+                    <h2 class="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-4 text-center md:text-left">
                         Quem é o <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-gold">Thiago da VDA</span>
                     </h2>
-
-                    <!-- Divider -->
-                    <div class="w-10 h-[2px] bg-brand-orange/50 rounded-full mb-5"></div>
 
                     <div class="space-y-3 text-sm md:text-[15px] text-white/60 leading-relaxed font-light">
                         <p>Texto teste. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim orci ac tortor venenatis, a pharetra ex facilisis.</p>
@@ -1185,10 +1182,18 @@
                         <p>Texto teste. Quisque gravida sapien eu velit tincidunt, sed viverra elit tincidunt. Fusce vel elit vehicula, varius massa non, cursus lorem.</p>
                     </div>
 
-                    <!-- Highlight badge -->
-                    <div class="mt-6 inline-flex items-center gap-2 bg-brand-orange/10 border border-brand-orange/20 rounded-full px-4 py-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brand-orange shadow-[0_0_6px_rgba(249,115,22,0.8)]"></span>
-                        <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest">Texto teste</span>
+                    <!-- CTA Button -->
+                    <div class="mt-8 flex justify-center md:justify-start">
+                        <a href="#oferta"
+                            class="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl font-bold text-sm text-white uppercase tracking-widest overflow-hidden transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_35px_rgba(249,115,22,0.55)] hover:scale-[1.03] bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10">
+                            <!-- Inner shimmer sweep -->
+                            <span class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent"></span>
+                            <!-- Orange glow dot -->
+                            <span class="w-2 h-2 rounded-full bg-brand-orange shadow-[0_0_8px_rgba(249,115,22,1)] flex-shrink-0"></span>
+                            Entrar para VDA
+                            <!-- Arrow -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </a>
                     </div>
                 </div>
 
