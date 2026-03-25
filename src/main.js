@@ -59,34 +59,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Reveal Animation Logic --- 
+    // --- Reveal Animation Logic (High Performance via IntersectionObserver) --- 
     const reveals = document.querySelectorAll('.reveal');
 
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-
-        reveals.forEach((element) => {
-            const elementTop = element.getBoundingClientRect().top;
-            if (elementTop < windowHeight - elementVisible) {
-                element.classList.add('active');
-            }
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once revealed to save CPU cycles
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.05
         });
-    };
 
-    window.addEventListener('scroll', revealOnScroll, { passive: true });
-    revealOnScroll(); // Trigger once on load
+        reveals.forEach(element => {
+            revealObserver.observe(element);
+        });
+    } else {
+        // Fallback for extremely old browsers missing Observer API
+        reveals.forEach(el => el.classList.add('active'));
+    }
 
     // --- Hero Canvas Sequence Animation ---
     const canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
 
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext('2d', { alpha: false }); // Otimiza pintura se não tiver fundo transparente
     const heroContainer = document.getElementById('hero-scroll-container');
 
-    // Config: 80 frames (from 000 to 079)
+    // Config: 80 frames (from 000 to 079)  -> reduced to 40?
     const frameCount = 40;
-    const images = [];
+    const images = new Array(frameCount);
 
     // Set internal canvas resolution to standard 1080p horizontal layout
     canvas.width = 1920;
@@ -97,18 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     const preloadImages = () => {
-        for (let i = 0; i < frameCount; i++) {
-            const img = new Image();
-            img.src = getFramePath(i);
+        // Load only the first frame instantly to avoid blocking Initial Contentful Paint
+        const firstImg = new Image();
+        firstImg.src = getFramePath(0);
+        firstImg.onload = () => {
+            context.drawImage(firstImg, 0, 0, canvas.width, canvas.height);
+            images[0] = firstImg;
 
-            // Draw first frame instantly
-            if (i === 0) {
-                img.onload = () => {
-                    context.drawImage(img, 0, 0, canvas.width, canvas.height);
-                };
-            }
-            images.push(img);
-        }
+            // Schedule the rest of the images to load asynchronously without freezing the UI
+            setTimeout(() => {
+                for (let i = 1; i < frameCount; i++) {
+                    const img = new Image();
+                    img.src = getFramePath(i);
+                    images[i] = img;
+                }
+            }, 300); // 300ms breather for the UI thread
+        };
     };
 
     let activeFrameIndex = 0;
