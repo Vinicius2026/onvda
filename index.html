@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDA: Venda Direta Automática</title>
+    <meta name="description"
+        content="Venda como um afiliado de sucesso na VDA. Aprenda a vender no WhatsApp com tráfego pago e fluxo clique a clique.">
+
+    <!-- Tailwind CSS Script CDN for quick prototyping styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Cormorant', 'serif'],
+                        body: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',       /* High-end accent */
+                            orange: '#F97316',     /* Urgency CTA */
+                            green: '#10B981',      /* Success / Checkmarks */
+                            dark: '#0B0F19',       /* Deep dark background */
+                            card: '#151C2C',       /* Slightly lighter card background */
+                            gray1: '#1E293B',
+                            gray2: '#94A3B8'
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./src/index.css">
+</head>
+
+<body
+    class="bg-brand-dark text-slate-50 font-body antialiased selection:bg-brand-orange selection:text-white relative overflow-x-hidden min-h-screen flex flex-col">
+
+    <!-- Subtle Background Glow -->
+    <div class="fixed inset-0 pointer-events-none z-[-1]">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-orange/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-gold/10 rounded-full blur-[120px]">
+        </div>
+    </div>
+
+    <!-- Floating Transparent Navigation Header -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-500 h-[60px] md:h-[80px] flex items-center bg-transparent mt-2 md:mt-4 pointer-events-none">
+        <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-3 items-center">
+
+            <!-- Left: Empty Space for Symmetry -->
+            <div class="flex items-center justify-start"></div>
+
+            <!-- Center: Empty (Logo Moved) -->
+            <div class="flex items-center justify-center">
+            </div>
+
+            <!-- Right: Premium Hamburger Menu -->
+            <div class="flex items-center justify-end pointer-events-auto">
+                <button id="mobile-menu-btn"
+                    class="flex flex-col justify-center items-end w-10 h-10 space-y-[4px] focus:outline-none z-[60] group cursor-pointer relative overflow-hidden bg-black/20 backdrop-blur-sm p-2 rounded-xl border border-white/5 shadow-2xl transition hover:bg-black/40">
+                    <span
+                        class="block w-5 h-[1px] bg-white transition-all duration-300 group-hover:w-6 group-hover:bg-brand-orange"></span>
+                    <span
+                        class="block w-6 h-[1px] bg-white transition-all duration-300 group-hover:w-3 group-hover:bg-brand-orange"></span>
+                    <span
+                        class="block w-4 h-[1px] bg-white transition-all duration-300 group-hover:w-6 group-hover:bg-brand-orange"></span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Fullscreen Minimalist Drawer Menu -->
+    <div id="mobile-drawer"
+        class="fixed inset-y-0 left-0 w-full sm:w-[400px] bg-[#000000] border-r border-white/5 z-[55] transform -translate-x-full transition-transform duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] shadow-2xl flex flex-col">
+
+        <!-- Drawer Header -->
+        <div class="h-[80px] w-full border-b border-white/5 flex items-center justify-end px-6 sm:px-8 relative">
+            
+            <!-- Centered Logo with Debossed/Pressed Button Effect -->
+            <div class="absolute left-1/2 -translate-x-1/2 flex justify-center items-center px-6 py-2.5 bg-[#030408] rounded-xl shadow-[inset_0_4px_10px_rgba(0,0,0,1),inset_0_1px_4px_rgba(0,0,0,0.8),0_1px_0_rgba(255,255,255,0.05)] border-t border-black/80">
+                <img src="./logotipo/logo2.webp" alt="VDA Logo" class="h-6 sm:h-7 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90">
+            </div>
+
+            <!-- Dedicated Close Button for Mobile -->
+            <button id="close-drawer-btn"
+                class="text-white hover:text-brand-orange p-2 transition-transform hover:scale-110 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Drawer Links -->
+        <!-- Drawer Links (Redesigned with Icons) -->
+        <nav class="flex flex-col px-8 py-10 gap-8 mt-2 relative z-20">
+            <!-- Link 1: Comprar Curso -->
+            <a href="#oferta" class="mobile-link group flex items-center w-full relative py-2">
+                <div class="absolute left-0 w-10 h-10 rounded-full bg-brand-orange/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
+                
+                <div class="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-brand-orange transition-colors duration-500 shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                
+                <span class="text-[26px] font-heading font-light text-slate-300 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Comprar Curso</span>
+                
+                <div class="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-brand-orange">I</span>
+                </div>
+            </a>
+
+            <!-- Link 2: Área de Membros -->
+            <a href="#" class="mobile-link group flex items-center w-full relative py-2">
+                <div class="absolute left-0 w-10 h-10 rounded-full bg-slate-100/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
+                
+                <div class="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-slate-100 transition-colors duration-500 shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                
+                <span class="text-[26px] font-heading font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Área de Membros</span>
+                
+                <div class="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-white/50">II</span>
+                </div>
+            </a>
+
+            <!-- Link 3: Painel de Controle -->
+            <a href="#" class="mobile-link group flex items-center w-full relative py-2">
+                <div class="absolute left-0 w-10 h-10 rounded-full bg-[#00e5ff]/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
+                
+                <div class="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-[#00e5ff] transition-colors duration-500 shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                </div>
+                
+                <span class="text-[26px] font-heading font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Painel de Controle</span>
+                
+                <div class="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-[#00e5ff]/50">III</span>
+                </div>
+            </a>
+
+            <!-- Link 4: Chamar Suporte -->
+            <a href="#" class="mobile-link group flex items-center w-full relative py-2">
+                <div class="absolute left-0 w-10 h-10 rounded-full bg-brand-green/10 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
+                
+                <div class="w-10 h-10 flex items-center justify-center relative z-10 text-slate-500 group-hover:text-brand-green transition-colors duration-500 shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                </div>
+                
+                <span class="text-[26px] font-heading font-light text-slate-400 group-hover:text-white ml-5 transform group-hover:translate-x-2 transition-transform duration-500 z-10 tracking-wide whitespace-nowrap">Chamar Suporte</span>
+                
+                <div class="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 border-l border-white/10 pl-4 h-full flex items-center">
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-brand-green/50">IV</span>
+                </div>
+            </a>
+        </nav>
+
+        <!-- Drawer Footer -->
+        <div class="mt-auto p-8 mb-4">
+            <div class="flex items-center gap-4 mb-4">
+                <a href="mailto:contato@vdabr.com.br"
+                    class="text-xs tracking-widest text-brand-gray2 hover:text-white transition-colors hover:underline underline-offset-4 decoration-brand-orange">contato@vdabr.com.br</a>
+            </div>
+            <p class="text-[10px] uppercase tracking-[0.2em] text-white/20">VDA Produções &copy;</p>
+        </div>
+    </div>
+
+    <!-- Mobile Drawer Dark Overlay Backstop -->
+    <div id="mobile-overlay"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[50] opacity-0 pointer-events-none transition-opacity duration-500">
+    </div>
+
+    <!-- Hero Section (Natural Scroll & Sequence Animation) -->
+    <main id="hero-scroll-container"
+        class="relative w-full min-h-[100vh] overflow-hidden flex items-center justify-center py-12 lg:py-16 bg-brand-dark pt-[100px] lg:pt-[80px]">
+
+        <!-- Canvas Background Wrapper -->
+        <div id="hero-bg-wrapper"
+            class="absolute inset-0 w-full h-full z-0 overflow-hidden transform-gpu origin-center scale-105">
+            <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
+
+            <!-- Dynamic Dark Overlay -->
+            <div id="hero-overlay" class="absolute inset-0 bg-brand-dark/40 z-10 transition-colors duration-100"></div>
+        </div>
+
+        <!-- Centered Content -->
+        <div
+            class="relative z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 mt-12 sm:mt-0">
+            <div class="reveal">
+                <div class="flex items-center justify-center gap-4 mb-6 mx-auto">
+                    <div class="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent to-brand-gold/60"></div>
+                    <span
+                        class="text-[10px] sm:text-xs font-bold text-slate-300 uppercase tracking-[0.3em] drop-shadow-lg">A
+                        Jornada do Zero ao Lucro</span>
+                    <div class="h-[1px] w-8 md:w-16 bg-gradient-to-l from-transparent to-brand-gold/60"></div>
+                </div>
+
+                <h1
+                    class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 max-w-3xl mx-auto drop-shadow-2xl">
+                    Venda os <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-gold text-glow">produtos
+                        da VDA</span> direto no Whatsapp.
+                </h1>
+
+                <p
+                    class="text-[10px] sm:text-xs text-brand-gray2 font-medium tracking-wide leading-relaxed mb-8 max-w-md mx-auto drop-shadow-md">
+                    Entregamos uma lista de produtos e ensinamos todo passo a passo para você vender pelo whatsapp.
+                </p>
+
+                <div class="flex flex-col items-center justify-center gap-4 w-full sm:w-auto">
+                    <a href="#oferta"
+                        class="w-full sm:w-auto px-6 py-3 text-sm bg-brand-orange hover:bg-orange-500 text-white font-bold rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group cursor-pointer border border-brand-orange/50 backdrop-blur-sm">
+                        <span>Quero ter a VDA Completa</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <p class="text-xs text-slate-400 mt-2 font-medium">Role a página para descobrir o sistema.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div
+            class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center opacity-70 animate-bounce cursor-default">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+
+        </div>
+    </main>
+
+    <!-- Methodology Section: Campo de Batalha -->
+    <section id="metodologia"
+        class="w-full pt-8 pb-16 relative bg-brand-gray1/20 border-y border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal flex flex-col items-center relative">
+
+                <!-- VDA Logo Inserted Above Title with Ethereal Float & Glow Animation -->
+                <div class="relative mb-12 flex justify-center items-center">
+                    <div class="relative h-16 sm:h-20 md:h-24 logo-float-container">
+                        <img src="./logotipo/logo2.webp" alt="VDA Logo"
+                            class="h-full w-auto object-contain relative z-10">
+                    </div>
+                </div>
+
+                <h2 class="font-heading mb-3 mt-2 leading-tight">
+                    <span class="text-3xl md:text-5xl font-bold">Pare de insistir tentando vender <span class="text-brand-orange">como afiliado</span>.</span><br
+                        class="hidden md:block">
+                    <span class="text-xl md:text-2xl font-bold">Se isso realmente funcionasse, <span class="text-slate-400 font-light">você não estaria lendo este
+                        texto agora.</span></span>
+                </h2>
+                <p class="text-sm md:text-sm text-brand-gray2 leading-relaxed max-w-md mx-auto">
+                    Mais esforço em marketing ou vendas pode não resolver. O que muda o jogo diariamente é uma nova
+                    direção.
+                </p>
+            </div>
+
+            <div class="mt-20 max-w-4xl mx-auto flex flex-col items-center justify-center reveal"
+                style="transition-delay: 150ms;">
+
+                <!-- Stylized Subheading Block -->
+                <div class="inline-flex items-center gap-4 mb-8">
+                    <div class="w-12 h-[1px] bg-gradient-to-r from-transparent to-brand-orange/60"></div>
+                    <span
+                        class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-brand-orange drop-shadow-md text-center max-w-[200px] md:max-w-none leading-relaxed">Venda
+                        Direta Automatica</span>
+                    <div class="w-12 h-[1px] bg-gradient-to-l from-transparent to-brand-orange/60"></div>
+                </div>
+
+                <!-- Premium Vertical Video Section (VDA Abertura) -->
+                <div class="w-full max-w-[300px] sm:max-w-[360px] mx-auto relative group z-20 mb-16 sm:mb-20">
+                    <!-- Glowing ambient aura -->
+                    <div class="absolute -inset-1 sm:-inset-2 bg-gradient-to-b from-brand-orange/60 via-brand-gold/20 to-brand-orange/60 rounded-[32px] sm:rounded-[40px] blur-xl opacity-50 group-hover:opacity-80 transition duration-700 ease-in-out"></div>
+                    
+                    <!-- App Frame Container -->
+                    <div class="relative bg-[#050810] rounded-[32px] sm:rounded-[40px] p-2 sm:p-2.5 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-10 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2">
+                        
+                        <!-- Premium Device Notch -->
+                        <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-[#000] rounded-full z-30 flex justify-center items-center shadow-[inset_0_1px_2px_rgba(255,255,255,0.1)]">
+                            <div class="w-1 h-1 rounded-full bg-white/20 mr-1.5"></div>
+                            <div class="w-8 h-1 rounded-full bg-white/10"></div>
+                        </div>
+
+                        <!-- Video Player Wrapper -->
+                        <div class="relative w-full aspect-[9/16] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-black shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                            
+                            <!-- Loading / Fallback background pulse -->
+                            <div class="absolute inset-0 bg-brand-dark flex items-center justify-center animate-pulse z-0">
+                                <div class="w-8 h-8 rounded-full border-t-2 border-brand-orange animate-spin"></div>
+                            </div>
+                            
+                            <iframe 
+                                src="https://player.vimeo.com/video/1176448457?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                                frameborder="0" 
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:inherit;"
+                                title="VDA ABERTURA"
+                                class="z-10 relative">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="font-heading text-3xl md:text-5xl font-normal text-white mb-6 md:mb-8 text-center leading-tight tracking-wide">
+                    O que vamos fazer <strong
+                        class="font-bold underline decoration-brand-orange/40 underline-offset-8">exatamente</strong> na
+                    VDA?
+                </h3>
+
+                <p class="text-slate-300 text-xs md:text-sm text-center leading-relaxed max-w-xl mt-2 font-light">
+                    Na VDA, você não precisa criar nada do zero. Nós entregamos os <strong
+                        class="text-white font-medium">produtos que mais vendem hoje</strong>, junto com os <strong
+                        class="text-white font-medium">áudios, textos e vídeos exatos</strong> que usamos para fechar
+                    vendas no WhatsApp.<br class="hidden md:block"><br class="hidden md:block">
+                    Basta seguir o método, usar nosso material de apoio e contar com uma comunidade ativa de centenas de
+                    alunos.
+                </p>
+
+                <!-- Cinematic Scroll Indicator (Left Side Only) -->
+                <div class="absolute left-1 sm:left-4 lg:left-8 top-1/4 bottom-0 flex flex-col items-center gap-4 opacity-50 pointer-events-none">
+                    <!-- Glowing Dot -->
+                    <div class="w-1 h-1 rounded-full bg-brand-orange shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
+                    <!-- Fading descending line -->
+                    <div class="w-[1px] h-32 bg-gradient-to-b from-brand-orange/60 via-brand-orange/10 to-transparent"></div>
+                    <!-- Animated particles dropping -->
+                    <div class="w-[1px] h-12 bg-white/20 animate-[bounce_3s_infinite]"></div>
+                    <div class="w-1 h-1 rounded-full bg-white/20 mt-4"></div>
+                    <div class="w-0.5 h-0.5 rounded-full bg-white/10 mt-2"></div>
+                </div>
+
+                <!-- Mobile Navigation Hint -->
+                <div class="flex md:hidden justify-center items-center gap-3 w-full mb-3 mt-4 text-slate-500/60 text-[10px] tracking-widest uppercase font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    Deslize para ver
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </div>
+                
+                <!-- Cards layout: Desktop 3x2, Tablet 2x3, Mobile 1x6 -->
+                <section class="w-full max-w-5xl mx-auto mb-4 px-4 sm:px-0 text-center">
+                    <h3 class="text-lg sm:text-2xl font-heading font-bold tracking-wide text-white drop-shadow-[0_0_20px_rgba(249,115,22,0.35)]">Recursos Premium VDA</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1">As 6 vantagens essenciais para escalar vendas no WhatsApp com clareza e autoridade.</p>
+                        <div class="bonus-cards mt-2 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 w-full max-w-full mx-auto reveal pb-10 sm:pb-8 px-4 md:px-0">
+
+                    <!-- Card 1 -->
+                    <div class="card-item relative bg-gradient-to-b from-[#111A2C] to-[#0A1225] rounded-[18px] md:rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col transition-all duration-500 shadow-xl hover:shadow-[0_20px_40px_rgba(16,185,129,0.15)] hover:-translate-y-2 transform-gpu group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-brand-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-brand-green/10 rounded-full blur-[60px] pointer-events-none group-hover:bg-brand-green/20 transition-colors duration-700 z-0"></div>
+
+                        <h4 class="text-xs sm:text-sm font-medium mb-4 relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300 tracking-wide text-center leading-tight">
+                            Vendas no<br /><strong class="text-brand-green font-bold text-sm sm:text-lg drop-shadow-[0_2px_10px_rgba(16,185,129,0.3)] break-words w-full block mt-0.5 transition-all duration-300 group-hover:drop-shadow-[0_4px_15px_rgba(16,185,129,0.8)]">WhatsApp</strong>
+                        </h4>
+
+                        <!-- Image Container (Pure, same size) -->
+                        <div class="w-full h-[120px] sm:h-[140px] relative z-10 flex justify-center items-center mb-5 transition-transform duration-700 group-hover:scale-[1.05]">
+                            <div class="absolute inset-0 bg-brand-green/0 group-hover:bg-brand-green/20 blur-2xl rounded-full transition-all duration-700 transform scale-50 group-hover:scale-110 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                            <img src="./capas bonus/1.webp" alt="Vendas no WhatsApp"
+                                class="w-full h-full object-contain mix-blend-screen transform group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10 filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+                        </div>
+
+                        <p class="text-slate-400 text-[10px] sm:text-xs relative z-10 pb-0 font-light leading-relaxed text-center mt-auto w-full transition-all duration-300 group-hover:text-slate-200">
+                            Negócio 100% focado no app
+                        </p>
+
+                        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-green/60 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center opacity-80 group-hover:opacity-100"></div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card-item relative bg-gradient-to-b from-[#111A2C] to-[#0A1225] rounded-[18px] md:rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col transition-all duration-500 shadow-xl hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:-translate-y-2 transform-gpu group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-brand-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-brand-gold/10 rounded-full blur-[60px] pointer-events-none group-hover:bg-brand-gold/20 transition-colors duration-700 z-0"></div>
+
+                        <h4 class="text-xs sm:text-sm font-medium mb-4 relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300 tracking-wide text-center leading-tight">
+                            Produtos<br /><strong class="text-brand-gold font-bold text-sm sm:text-lg drop-shadow-[0_2px_10px_rgba(212,175,55,0.3)] break-words w-full block mt-0.5 transition-all duration-300 group-hover:drop-shadow-[0_4px_15px_rgba(212,175,55,0.8)]">Lucrativos</strong>
+                        </h4>
+
+                        <div class="w-full h-[120px] sm:h-[140px] relative z-10 flex justify-center items-center mb-5 transition-transform duration-700 group-hover:scale-[1.05]">
+                            <div class="absolute inset-0 bg-brand-gold/0 group-hover:bg-brand-gold/20 blur-2xl rounded-full transition-all duration-700 transform scale-50 group-hover:scale-110 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                            <img src="./capas bonus/2.webp" alt="Produtos Lucrativos"
+                                class="w-full h-full object-contain mix-blend-screen transform group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10 filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+                        </div>
+
+                        <p class="text-slate-400 text-[10px] sm:text-xs relative z-10 pb-0 font-light leading-relaxed text-center mt-auto w-full transition-all duration-300 group-hover:text-slate-200">
+                            Produtos validados e rentáveis
+                        </p>
+
+                        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center opacity-80 group-hover:opacity-100"></div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card-item relative bg-gradient-to-b from-[#111A2C] to-[#0A1225] rounded-[18px] md:rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col transition-all duration-500 shadow-xl hover:shadow-[0_20px_40px_rgba(34,211,238,0.15)] hover:-translate-y-2 transform-gpu group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-cyan-400/10 rounded-full blur-[60px] pointer-events-none group-hover:bg-cyan-400/20 transition-colors duration-700 z-0"></div>
+
+                        <h4 class="text-xs sm:text-sm font-medium mb-4 relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300 tracking-wide text-center leading-tight">
+                            Material de<br /><strong class="text-cyan-400 font-bold text-sm sm:text-lg drop-shadow-[0_2px_10px_rgba(34,211,238,0.3)] break-words w-full block mt-0.5 transition-all duration-300 group-hover:drop-shadow-[0_4px_15px_rgba(34,211,238,0.8)]">Apoio</strong>
+                        </h4>
+
+                        <div class="w-full h-[120px] sm:h-[140px] relative z-10 flex justify-center items-center mb-5 transition-transform duration-700 group-hover:scale-[1.05]">
+                            <div class="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/20 blur-2xl rounded-full transition-all duration-700 transform scale-50 group-hover:scale-110 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                            <img src="./capas bonus/3.webp" alt="Material de Apoio"
+                                class="w-full h-full object-contain mix-blend-screen transform group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10 filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+                        </div>
+
+                        <p class="text-slate-400 text-[10px] sm:text-xs relative z-10 pb-0 font-light leading-relaxed text-center mt-auto w-full transition-all duration-300 group-hover:text-slate-200">
+                            Kit completo para o aluno
+                        </p>
+
+                        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center opacity-80 group-hover:opacity-100"></div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card-item relative bg-gradient-to-b from-[#111A2C] to-[#0A1225] rounded-[18px] md:rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col transition-all duration-500 shadow-xl hover:shadow-[0_20px_40px_rgba(249,115,22,0.15)] hover:-translate-y-2 transform-gpu group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-brand-orange/10 rounded-full blur-[60px] pointer-events-none group-hover:bg-brand-orange/20 transition-colors duration-700 z-0"></div>
+
+                        <h4 class="text-xs sm:text-sm font-medium mb-4 relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300 tracking-wide text-center leading-tight">
+                            Estratégias de<br /><strong class="text-brand-orange font-bold text-sm sm:text-lg drop-shadow-[0_2px_10px_rgba(249,115,22,0.3)] break-words w-full block mt-0.5 transition-all duration-300 group-hover:drop-shadow-[0_4px_15px_rgba(249,115,22,0.8)]">Venda</strong>
+                        </h4>
+
+                        <div class="w-full h-[120px] sm:h-[140px] relative z-10 flex justify-center items-center mb-5 transition-transform duration-700 group-hover:scale-[1.05]">
+                            <div class="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 blur-2xl rounded-full transition-all duration-700 transform scale-50 group-hover:scale-110 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                            <img src="./capas bonus/4.webp" alt="Estratégias de Venda"
+                                class="w-full h-full object-contain mix-blend-screen transform group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10 filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+                        </div>
+
+                        <p class="text-slate-400 text-[10px] sm:text-xs relative z-10 pb-0 font-light leading-relaxed text-center mt-auto w-full transition-all duration-300 group-hover:text-slate-200">
+                            Métodos testados para conversão
+                        </p>
+
+                        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-orange/60 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center opacity-80 group-hover:opacity-100"></div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="card-item relative bg-gradient-to-b from-[#111A2C] to-[#0A1225] rounded-[18px] md:rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col transition-all duration-500 shadow-xl hover:shadow-[0_20px_40px_rgba(96,165,250,0.15)] hover:-translate-y-2 transform-gpu group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-blue-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-400/10 rounded-full blur-[60px] pointer-events-none group-hover:bg-blue-400/20 transition-colors duration-700 z-0"></div>
+
+                        <h4 class="text-xs sm:text-sm font-medium mb-4 relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300 tracking-wide text-center leading-tight">
+                            Fluxo de<br /><strong class="text-blue-400 font-bold text-sm sm:text-lg drop-shadow-[0_2px_10px_rgba(96,165,250,0.3)] break-words w-full block mt-0.5 transition-all duration-300 group-hover:drop-shadow-[0_4px_15px_rgba(96,165,250,0.8)]">Clientes</strong>
+                        </h4>
+
+                        <div class="w-full h-[120px] sm:h-[140px] relative z-10 flex justify-center items-center mb-5 transition-transform duration-700 group-hover:scale-[1.05]">
+                            <div class="absolute inset-0 bg-blue-400/0 group-hover:bg-blue-400/20 blur-2xl rounded-full transition-all duration-700 transform scale-50 group-hover:scale-110 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                            <img src="./capas bonus/5.webp" alt="Fluxo de Clientes"
+                                class="w-full h-full object-contain mix-blend-screen transform group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10 filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+                        </div>
+
+                        <p class="text-slate-400 text-[10px] sm:text-xs relative z-10 pb-0 font-light leading-relaxed text-center mt-auto w-full transition-all duration-300 group-hover:text-slate-200">
+                            Receba novos contatos todos os dias
+                        </p>
+
+                        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-400/60 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center opacity-80 group-hover:opacity-100"></div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="card-item relative bg-gradient-to-b from-[#111A2C] to-[#0A1225] rounded-[18px] md:rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col transition-all duration-500 shadow-xl hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:-translate-y-2 transform-gpu group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-brand-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-brand-gold/10 rounded-full blur-[60px] pointer-events-none group-hover:bg-brand-gold/20 transition-colors duration-700 z-0"></div>
+
+                        <h4 class="text-xs sm:text-sm font-medium mb-4 relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300 tracking-wide text-center leading-tight">
+                            Fidelização e<br /><strong class="text-brand-gold font-bold text-sm sm:text-lg drop-shadow-[0_2px_10px_rgba(212,175,55,0.3)] break-words w-full block mt-0.5 transition-all duration-300 group-hover:drop-shadow-[0_4px_15px_rgba(212,175,55,0.8)]">Recompra</strong>
+                        </h4>
+
+                        <div class="w-full h-[120px] sm:h-[140px] relative z-10 flex justify-center items-center mb-5 transition-transform duration-700 group-hover:scale-[1.05]">
+                            <div class="absolute inset-0 bg-brand-gold/0 group-hover:bg-brand-gold/20 blur-2xl rounded-full transition-all duration-700 transform scale-50 group-hover:scale-110 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+                            <img src="./capas bonus/6.webp" alt="Fidelização e Recompra"
+                                class="w-full h-full object-contain mix-blend-screen transform group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10 filter brightness-110 contrast-125 drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+                        </div>
+
+                        <p class="text-slate-400 text-[10px] sm:text-xs relative z-10 pb-0 font-light leading-relaxed text-center mt-auto w-full transition-all duration-300 group-hover:text-slate-200">
+                            Clientes voltando para comprar novamente
+                        </p>
+
+                        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center opacity-80 group-hover:opacity-100"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glowing Premium Divider -->
+    <div class="w-full relative flex justify-center items-center h-px bg-white/5">
+        <div class="absolute w-1/2 max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent"></div>
+        <div class="absolute w-1/4 max-w-sm h-[3px] bg-brand-orange/20 blur-[4px]"></div>
+        <!-- Center diamond -->
+        <div class="absolute w-2 h-2 rotate-45 border border-brand-orange/40 bg-[#0A0E17] shadow-[0_0_10px_rgba(249,115,22,0.4)]"></div>
+    </div>
+
+    <!-- Dashboard Presentation Section (Redesigned matching new Reference Layout) -->
+    <section id="dashboard-presentation" class="w-full pt-20 sm:pt-28 pb-12 sm:pb-16 relative overflow-hidden flex flex-col items-center bg-[#060913]">
+        
+        <!-- Deep cyan ambient glow -->
+        <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#00e5ff]/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 w-full text-center flex flex-col items-center">
+            
+            <!-- Typography Layout Inspired by Reference -->
+            <div class="mb-10 sm:mb-16 reveal flex flex-col items-center justify-center text-center relative z-50">
+                <h2 class="font-heading text-4xl sm:text-[32px] lg:text-[36px] font-bold text-white mb-4 leading-tight tracking-tight">
+                    A VDA te dá base para alcançar até
+                    <span class="font-body text-[#00e5ff] drop-shadow-[0_0_20px_rgba(0,229,255,0.5)] block text-[42px] leading-[1] sm:text-[52px] lg:text-[60px] my-1 sm:my-2 font-black tracking-tighter">50 vendas</span>
+                    todos os dias.
+                </h2>
+                
+                <div class="inline-flex items-center gap-3 mt-6 mb-8">
+                    <div class="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#00e5ff]/60"></div>
+                    <span class="text-[10px] sm:text-xs font-bold tracking-[0.4em] uppercase text-[#00e5ff] drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] text-center">Painel de Controle VDA</span>
+                    <div class="w-8 h-[1px] bg-gradient-to-l from-transparent to-[#00e5ff]/60"></div>
+                </div>
+
+                <div class="inline-block bg-white text-[#050810] font-bold py-3 sm:py-[10px] px-8 sm:px-8 rounded-full text-[13px] sm:text-[14px] shadow-[0_0_25px_rgba(255,255,255,0.15)] pointer-events-none select-none mt-2">
+                    Grupo Interagindo Diariamente
+                </div>
+            </div>
+
+            <!-- Dashboard Staggered Composite Layout -->
+            <div class="relative w-full h-[400px] sm:h-[600px] reveal mt-4 sm:mt-8">
+                
+                <!-- 1. Center Background Image -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] sm:w-[75%] rounded-lg sm:rounded-xl border border-white/5 bg-[#0B0F19] overflow-hidden opacity-80 brightness-110 z-10 shadow-2xl">
+                    <div class="flex items-center gap-1.5 px-3 py-2 border-b border-white/5 bg-[#0B0F19]">
+                        <span class="w-2 h-2 rounded-full bg-red-500/40"></span>
+                        <span class="w-2 h-2 rounded-full bg-yellow-500/40"></span>
+                        <span class="w-2 h-2 rounded-full bg-green-500/40"></span>
+                    </div>
+                    <img src="./dentro da vda/produto-dashboard-review.webp" alt="Dashboard Back" class="w-full h-auto object-cover">
+                    <!-- Fading bottom so it blends into the background -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#060913] via-transparent to-transparent"></div>
+                </div>
+
+                <!-- 2. Left Phone Widget (Pure HTML/CSS matching reference) -->
+                <div class="absolute bottom-4 sm:bottom-12 left-0 sm:left-4 w-[150px] sm:w-[240px] bg-[#0A0D14] rounded-[24px] sm:rounded-[40px] border border-[#00e5ff]/20 shadow-[0_30px_60px_rgba(0,0,0,0.8)] p-4 sm:p-6 z-30 transform hover:-translate-y-2 transition-transform duration-500">
+                    <div class="w-8 sm:w-12 h-1 bg-white/10 rounded-full mx-auto mb-4 sm:mb-6"></div>
+                    <div class="flex items-center gap-1.5 sm:gap-2 mb-4 sm:mb-8">
+                        <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#00e5ff]/10 border border-[#00e5ff]/30 flex items-center justify-center shadow-[0_0_10px_rgba(0,229,255,0.2)] shrink-0">
+                            <span class="text-[8px] sm:text-[10px] font-black text-[#00e5ff] tracking-tighter">VDA</span>
+                        </div>
+                        <span class="text-[7px] sm:text-[8px] text-slate-400 font-medium tracking-widest uppercase leading-tight">Venda Direta<br>Automática</span>
+                    </div>
+                    <p class="text-[9px] sm:text-xs text-slate-400 font-medium mb-1 text-left">Vendas Hoje</p>
+                    <p class="text-white text-lg sm:text-2xl font-black tracking-tight mb-6 sm:mb-8 text-left leading-none"><span class="text-[#00e5ff] text-base sm:text-xl mr-1">R$</span>8.240,00</p>
+                    
+                    <div class="flex items-end justify-between h-14 sm:h-20 gap-1 sm:gap-2">
+                        <div class="w-full bg-[#00e5ff]/20 rounded-t-sm animate-[pulse_3s_infinite]" style="height: 30%"></div>
+                        <div class="w-full bg-[#00e5ff]/40 rounded-t-sm" style="height: 50%"></div>
+                        <div class="w-full bg-[#00e5ff]/30 rounded-t-sm" style="height: 40%"></div>
+                        <div class="w-full bg-[#00e5ff] rounded-t-sm shadow-[0_0_15px_rgba(0,229,255,0.4)]" style="height: 90%"></div>
+                    </div>
+                    
+                    <div class="w-1/2 h-1 bg-white/5 rounded-full mx-auto mt-4 sm:mt-6"></div>
+                </div>
+
+                <!-- 3. Right Content Card (Flow Mockup) -->
+                <div class="absolute bottom-12 sm:bottom-24 right-0 sm:right-4 w-[180px] sm:w-[320px] bg-[#0A0D14] rounded-xl sm:rounded-2xl border border-[#00e5ff]/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)] p-1.5 sm:p-2 z-40 transform hover:-translate-y-2 transition-transform duration-500">
+                    <div class="w-full relative rounded-lg overflow-hidden border border-white/5 bg-[#060913]">
+                        <img src="./blvda img/vda-fluxo-vendas.webp" alt="Fluxo de Vendas VDA" class="w-full h-auto object-cover">
+                        <!-- Progress bar mimicking reference -->
+                        <div class="absolute bottom-0 left-0 w-full h-1.5 sm:h-2 bg-white/10">
+                            <div class="h-full bg-[#00e5ff] w-[100%] shadow-[0_0_10px_rgba(0,229,255,0.6)]"></div>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4 text-left">
+                        <div class="w-full h-1.5 sm:h-2 bg-white/5 rounded-full mb-2"></div>
+                        <div class="w-2/3 h-1.5 sm:h-2 bg-[#00e5ff]/20 rounded-full"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Stylized Minimalist Black & White Title with Light Effect -->
+            <div class="mt-20 sm:mt-28 mb-8 sm:mb-12 w-full flex flex-col items-center justify-center relative reveal z-50">
+                <!-- Ambient Wide Glow -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-[650px] h-[60px] bg-white/10 blur-[80px] rounded-full pointer-events-none"></div>
+                
+                <h3 class="font-heading text-center leading-tight tracking-tight relative z-10 max-w-5xl px-4 mx-auto flex flex-col items-center">
+                    <span class="block text-[26px] sm:text-[38px] lg:text-[46px] font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] mb-2 sm:mb-3">
+                        Venda sem perder tempo criando sites
+                    </span>
+                    <span class="block font-light text-slate-300 text-[18px] sm:text-[24px] lg:text-[30px] opacity-85 tracking-wide leading-relaxed max-w-4xl drop-shadow-none">
+                        ou arriscando seu <strong class="font-medium text-white/95">capital</strong> em testes sem fim.
+                    </span>
+                </h3>
+
+                <!-- CTA Button -->
+                <div class="mt-8 sm:mt-10 relative z-20 w-auto">
+                    <a href="#oferta"
+                        class="w-full sm:w-auto px-8 py-3.5 text-sm sm:text-base bg-brand-orange hover:bg-orange-500 text-white font-bold rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group cursor-pointer border border-brand-orange/50 backdrop-blur-sm">
+                        <span>Comprar VDA Premium</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Minimalist Sunken Gray Divider -->
+    <div class="w-full flex justify-center items-center py-2 sm:py-4">
+        <div class="w-[85%] max-w-4xl h-[2px] bg-black border-b border-slate-600/20 rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)] opacity-70"></div>
+    </div>
+
+    <!-- Oferta & Bônus Section -->
+    <section id="oferta" class="w-full pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 lg:pb-28 relative bg-brand-dark overflow-hidden">
+
+        <!-- Glowing Core Background behind offer -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none z-0">
+        </div>
+
+        <!-- Mystic Floating Particle (Background Animation) -->
+        <div id="mystic-particle" class="absolute left-0 top-0 pointer-events-none z-0 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)] opacity-70">
+            <!-- Aura Luz -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] sm:w-[250px] h-[180px] sm:h-[250px] bg-brand-gold/25 rounded-full blur-[50px] sm:blur-[60px]"></div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const particle = document.getElementById("mystic-particle");
+                const section = particle.closest('section');
+                if(!particle || !section) return;
+                
+                let x = Math.random() * section.offsetWidth;
+                let y = Math.random() * section.offsetHeight;
+                
+                let vx = (Math.random() - 0.5) * 2;
+                let vy = (Math.random() - 0.5) * 2;
+                const maxSpeed = 1.2;
+                
+                function animate() {
+                    if (!section.offsetWidth) return requestAnimationFrame(animate); // Wait if hidden
+                    const width = section.offsetWidth;
+                    const height = section.offsetHeight;
+                    
+                    x += vx;
+                    y += vy;
+                    
+                    // Bounce realistically off borders
+                    if(x <= 0 || x >= width) vx *= -1;
+                    if(y <= 0 || y >= height) vy *= -1;
+                    
+                    // Enforce strict boundaries (e.g. during screen resize)
+                    x = Math.max(0, Math.min(x, width));
+                    y = Math.max(0, Math.min(y, height));
+                    
+                    // Drifting changes (firefly behavior)
+                    if(Math.random() < 0.02) {
+                        vx += (Math.random() - 0.5) * 0.5;
+                        vy += (Math.random() - 0.5) * 0.5;
+                        vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
+                        vy = Math.max(-maxSpeed, Math.min(maxSpeed, vy));
+                    }
+                    
+                    // Hardware accelerated 3D transform for maximum mobile performance (60fps lock)
+                    particle.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                    requestAnimationFrame(animate);
+                }
+                
+                requestAnimationFrame(animate);
+            });
+        </script>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="relative max-w-4xl mx-auto text-center mb-16 sm:mb-20 lg:mb-24 reveal flex flex-col items-center">
+                
+                <!-- Premium Glow Backing -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[200px] bg-gradient-radial from-brand-gold/10 via-brand-orange/5 to-transparent blur-[60px] pointer-events-none -z-10 rounded-full"></div>
+                
+                <!-- Main Offer Headline -->
+                <h2 class="font-heading font-black tracking-tight flex flex-col items-center justify-center z-10 w-full relative group">
+                    
+                    <!-- Line 1: 4 Bônus que custaria -->
+                    <span class="text-3xl sm:text-4xl lg:text-[42px] text-white/90 drop-shadow-md mb-2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-[#FFF1CC] to-brand-gold uppercase tracking-[0.1em] drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">
+                            4 Bônus
+                        </span>
+                        <span class="font-medium tracking-tight mt-1 sm:mt-0 text-slate-200">que custaria</span>
+                    </span>
+
+                    <!-- Line 2: Original Price Tag -->
+                    <div class="relative inline-flex items-center justify-center my-4 sm:my-6 group/price cursor-default">
+                        <div class="absolute inset-0 bg-red-600/15 blur-[20px] rounded-full transition-all duration-700 group-hover/price:bg-red-500/30"></div>
+                        <span class="relative text-2xl sm:text-3xl lg:text-4xl text-red-500 font-bold tracking-[0.15em] line-through decoration-red-600/80 decoration-[3px] opacity-90 px-6 sm:px-8 py-2 md:py-3 rounded-full border border-red-500/30 bg-[#0B0F19]/60 backdrop-blur-md shadow-[inset_0_0_20px_rgba(255,0,0,0.1)] transition-transform duration-500 group-hover/price:scale-[1.03]">
+                            R$ 1.994,00
+                        </span>
+                    </div>
+
+                    <!-- Line 3: Free Offer -->
+                    <span class="text-[2.25rem] sm:text-[3rem] lg:text-[4.5rem] leading-[1.1] text-white font-bold mt-2 sm:mt-4 flex flex-col sm:flex-row items-center gap-2 sm:gap-5 drop-shadow-xl">
+                        <span class="tracking-tight text-white/95 text-opacity-90">e hoje é</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-300 to-slate-500 uppercase tracking-widest font-black drop-shadow-[0_4px_25px_rgba(203,213,225,0.4)] relative inline-block transform sm:hover:scale-[1.08] transition-all duration-500 ease-out mt-1 sm:mt-0 px-2 group/free">
+                            Grátuito
+                            <!-- Accent glows representing premium value -->
+                            <span class="absolute -top-1 -right-3 w-4 h-4 bg-slate-300 rounded-full blur-[3px] opacity-80 animate-pulse"></span>
+                            <span class="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full blur-[2px] opacity-60"></span>
+                        </span>
+                    </span>
+                </h2>
+
+                <!-- Subtitle / Guarantee box -->
+                <div class="mt-8 sm:mt-10 w-full px-4 flex justify-center">
+                    <div class="w-full max-w-[460px] border border-white/10 rounded-[20px] bg-[#060913]/90 p-5 sm:p-7 shadow-[0_10px_40px_rgba(0,0,0,0.5)] backdrop-blur-md transition duration-300 hover:border-white/20 hover:bg-[#060913]">
+                        <p class="text-[13px] sm:text-[15px] font-body font-normal leading-relaxed text-slate-300 text-center tracking-wide">
+                            "Entendemos que com todos esses bônus o aluno avança para a venda mais rápida."
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Bonus Grid with + Separators -->
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 lg:gap-6 mb-16 reveal md:max-w-[90%] lg:max-w-[500px] xl:max-w-[600px] mx-auto" style="transition-delay: 150ms;">
+
+                <!-- Central + overlay (Desktop only - at the intersection of 2x2 grid) -->
+                <div class="bonus-plus-center hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 items-center justify-center pointer-events-none">
+                    <span class="bonus-plus-icon text-3xl lg:text-2xl font-extralight select-none">+</span>
+                </div>
+
+                <!-- Bonus 1: Áudios -->
+                <div class="relative rounded-[24px] p-[1px] bg-gradient-to-b from-white/20 to-transparent group hover:-translate-y-1 transition-all duration-500 w-full text-left shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.08)] z-10">
+                    <div class="relative w-full h-full bg-[#0a0a0c] rounded-[23px] p-6 sm:p-8 lg:p-5 flex flex-col overflow-hidden">
+                        
+                        <!-- Ambient Inner Glow (Apple style soft top-light) -->
+                        <div class="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-[50px] pointer-events-none group-hover:bg-white/10 transition-colors duration-700 z-0"></div>
+                        
+                        <!-- Imagem do Bônus Responsiva Centralizada -->
+                        <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
+                            <img src="./capas bonus/b1.webp" alt="Capa Bônus 1" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                        </div>
+                        
+                        <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 01</span>
+                        <h3 class="text-xl sm:text-2xl lg:text-[16px] lg:leading-snug font-semibold text-slate-100 mb-3 tracking-tight group-hover:text-white transition-colors duration-300 relative z-10">
+                            Banco de Áudios + Criativos + Copy
+                        </h3>
+                        
+                        <p class="text-slate-400 text-sm sm:text-[15px] lg:text-[11px] mb-8 lg:mb-4 lg:leading-[1.4] font-light leading-relaxed relative z-10 group-hover:text-slate-300 transition-colors duration-300">
+                            Funil mestre via áudio. Envie áudios prontos pré-gravados com um clique. Script completo adaptável para converter qualquer lead.
+                        </p>
+                        
+                        <div class="mt-auto relative z-10 pt-5">
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent"></div>
+                            <span class="block text-xs lg:text-[10px] text-slate-500 font-medium line-through decoration-slate-600 mb-1">De R$ 500,00</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-slate-400 text-[11px] sm:text-xs font-semibold uppercase tracking-widest">Hoje:</span>
+                                <span class="text-white font-semibold text-lg sm:text-xl lg:text-[14px] tracking-tight">R$ <span class="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">0,00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile + Separator 1 -->
+                <div class="flex md:hidden items-center justify-center -my-3">
+                    <span class="bonus-plus-icon text-2xl font-extralight select-none">+</span>
+                </div>
+
+                <!-- Bonus 2: Blindagem -->
+                <div class="relative rounded-[24px] p-[1px] bg-gradient-to-b from-white/20 to-transparent group hover:-translate-y-1 transition-all duration-500 w-full text-left shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.08)] z-10">
+                    <div class="relative w-full h-full bg-[#0a0a0c] rounded-[23px] p-6 sm:p-8 lg:p-5 flex flex-col overflow-hidden">
+                        <div class="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-[50px] pointer-events-none group-hover:bg-white/10 transition-colors duration-700 z-0"></div>
+                        
+                        <!-- Imagem do Bônus Responsiva Centralizada -->
+                        <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
+                            <img src="./capas bonus/b2.webp" alt="Capa Bônus 2" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                        </div>
+                        
+                        <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 02</span>
+                        <h3 class="text-xl sm:text-2xl lg:text-[16px] lg:leading-snug font-semibold text-slate-100 mb-3 tracking-tight group-hover:text-white transition-colors duration-300 relative z-10 leading-snug">
+                            Blindagem Anti-Bloqueio (Contingência VDA)
+                        </h3>
+                        
+                        <p class="text-slate-400 text-sm sm:text-[15px] lg:text-[11px] mb-8 lg:mb-4 lg:leading-[1.4] font-light leading-relaxed relative z-10 group-hover:text-slate-300 transition-colors duration-300">
+                            Guia blindado para anunciar sem levar bloqueios fatais. Estrutura pensada exclusivamente para Venda Direta sem interrupções.
+                        </p>
+                        
+                        <div class="mt-auto relative z-10 pt-5">
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent"></div>
+                            <span class="block text-xs lg:text-[10px] text-slate-500 font-medium line-through decoration-slate-600 mb-1">De R$ 997,00</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-slate-400 text-[11px] sm:text-xs font-semibold uppercase tracking-widest">Hoje:</span>
+                                <span class="text-white font-semibold text-lg sm:text-xl lg:text-[14px] tracking-tight">R$ <span class="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">0,00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile + Separator 2 -->
+                <div class="flex md:hidden items-center justify-center -my-3">
+                    <span class="bonus-plus-icon text-2xl font-extralight select-none">+</span>
+                </div>
+
+                <!-- Bonus 3: Calculadora -->
+                <div class="relative rounded-[24px] p-[1px] bg-gradient-to-b from-white/20 to-transparent group hover:-translate-y-1 transition-all duration-500 w-full text-left shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.08)] z-10">
+                    <div class="relative w-full h-full bg-[#0a0a0c] rounded-[23px] p-6 sm:p-8 lg:p-5 flex flex-col overflow-hidden">
+                        <div class="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-[50px] pointer-events-none group-hover:bg-white/10 transition-colors duration-700 z-0"></div>
+                        
+                        <!-- Imagem do Bônus Responsiva Centralizada -->
+                        <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
+                            <img src="./capas bonus/b3.webp" alt="Capa Bônus 3" class="w-48 sm:w-56 lg:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                        </div>
+                        
+                        <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 03</span>
+                        <h3 class="text-xl sm:text-2xl lg:text-[16px] lg:leading-snug font-semibold text-slate-100 mb-3 tracking-tight group-hover:text-white transition-colors duration-300 relative z-10">
+                            Calculadora de Lucro e Escala VDA
+                        </h3>
+                        
+                        <p class="text-slate-400 text-sm sm:text-[15px] lg:text-[11px] mb-8 lg:mb-4 lg:leading-[1.4] font-light leading-relaxed relative z-10 group-hover:text-slate-300 transition-colors duration-300">
+                            A exata planilha que utilizamos. Insira o custo de conversão (CPA) e veja instantaneamente o limite para escalar a campanha.
+                        </p>
+                        
+                        <div class="mt-auto relative z-10 pt-5">
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent"></div>
+                            <span class="block text-xs lg:text-[10px] text-slate-500 font-medium line-through decoration-slate-600 mb-1">De R$ 100,00</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-slate-400 text-[11px] sm:text-xs font-semibold uppercase tracking-widest">Hoje:</span>
+                                <span class="text-white font-semibold text-lg sm:text-xl lg:text-[14px] tracking-tight">R$ <span class="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">0,00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile + Separator 3 -->
+                <div class="flex md:hidden items-center justify-center -my-3">
+                    <span class="bonus-plus-icon text-2xl font-extralight select-none">+</span>
+                </div>
+
+                <!-- Bonus 4: Camuflador Pro -->
+                <div class="relative rounded-[24px] p-[1px] bg-gradient-to-b from-white/20 to-transparent group hover:-translate-y-1 transition-all duration-500 w-full text-left shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.08)] z-10">
+                    <div class="relative w-full h-full bg-[#0a0a0c] rounded-[23px] p-6 sm:p-8 lg:p-5 flex flex-col overflow-hidden">
+                        <div class="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-[50px] pointer-events-none group-hover:bg-white/10 transition-colors duration-700 z-0"></div>
+                        
+                        <!-- Imagem do Bônus Responsiva Centralizada -->
+                        <div class="w-full flex justify-center items-center mb-6 relative z-10 transition-transform duration-500 group-hover:scale-105">
+                            <img src="./capas bonus/b4.webp" alt="Capa Bônus 4" class="w-60 sm:w-72 lg:w-64 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]">
+                        </div>
+                        
+                        <span class="block text-slate-400 text-[10px] lg:text-[8.5px] font-bold uppercase tracking-[0.2em] mb-1 group-hover:text-slate-300 transition-colors duration-300 relative z-10">Bônus 04</span>
+                        <h3 class="text-xl sm:text-2xl lg:text-[16px] lg:leading-snug font-semibold text-slate-100 mb-3 tracking-tight group-hover:text-white transition-colors duration-300 relative z-10">
+                            Camuflador Pro VDA
+                        </h3>
+                        
+                        <p class="text-slate-400 text-sm sm:text-[15px] lg:text-[11px] mb-8 lg:mb-4 lg:leading-[1.4] font-light leading-relaxed relative z-10 group-hover:text-slate-300 transition-colors duration-300">
+                            Ferramenta que muda os metadados de vídeos/imagens, ludibriando a inteligência da plataforma simulando conteúdo gravado na hora.
+                        </p>
+                        
+                        <div class="mt-auto relative z-10 pt-5">
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent"></div>
+                            <span class="block text-xs lg:text-[10px] text-slate-500 font-medium line-through decoration-slate-600 mb-1">De R$ 397,00</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-slate-400 text-[11px] sm:text-xs font-semibold uppercase tracking-widest">Hoje:</span>
+                                <span class="text-white font-semibold text-lg sm:text-xl lg:text-[14px] tracking-tight">R$ <span class="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">0,00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ============================================ -->
+            <!--          PREMIUM PRICING CARD               -->
+            <!-- ============================================ -->
+            <div class="relative max-w-lg mx-auto reveal" style="transition-delay: 300ms;">
+
+                <!-- Ambient glow behind card -->
+                <div class="absolute inset-0 rounded-[32px] bg-gradient-to-br from-brand-orange/20 via-transparent to-[#21c55e]/15 blur-[60px] pointer-events-none -z-10 scale-110"></div>
+
+                <!-- 1. BADGE URGÊNCIA -->
+                <div class="flex justify-center mb-6">
+                    <div class="inline-flex items-center gap-2 bg-white/[0.06] border border-white/10 rounded-full px-5 py-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-white/50"></span>
+                        <span class="text-[10px] font-medium tracking-[0.2em] text-white/60 uppercase">Encerrando em breve</span>
+                    </div>
+                </div>
+
+                <!-- 2. HEADLINE FORTE -->
+                <div class="text-center mb-8 px-2">
+                    <p class="text-base sm:text-lg font-semibold text-white/90 leading-snug max-w-sm mx-auto">
+                        Quem vende pelo WhatsApp sistematicamente
+                        <strong class="text-white font-black"> não fica sem dinheiro no bolso.</strong>
+                    </p>
+                    <p class="text-[11px] text-white/35 mt-2 font-medium tracking-wide">Milhões faturados na internet com esse sistema.</p>
+                </div>
+
+                <!-- 3. CARD PRINCIPAL DE PREÇO -->
+                <!-- Borda gradiente animada -->
+                <div class="pricing-card-border rounded-[28px] p-[1.5px]">
+                    <div class="relative bg-[#070A10] rounded-[27px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.7)]">
+
+                        <!-- Noise texture overlay -->
+                        <div class="pricing-noise absolute inset-0 z-0 opacity-[0.03] pointer-events-none"></div>
+
+                        <!-- Radial glow top-center -->
+                        <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-brand-orange/20 rounded-full blur-[80px] pointer-events-none z-0"></div>
+
+                        <div class="relative z-10 p-7 sm:p-9 flex flex-col items-center">
+
+                            <!-- Preço antigo -->
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs text-slate-500 font-medium uppercase tracking-widest">De</span>
+                                <span class="text-sm text-slate-500 font-bold line-through decoration-red-500 decoration-[1.5px]">R$&nbsp;219,00</span>
+                            </div>
+
+                            <!-- Label pagamento único -->
+                            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#21c55e] mb-3">Hoje · Pagamento único</p>
+
+                            <!-- Preço principal com glow -->
+                            <div class="flex items-start justify-center leading-none mb-2">
+                                <span class="text-2xl font-black text-white mt-2 mr-1">R$</span>
+                                <span class="pricing-price-glow text-[88px] sm:text-[100px] font-black text-white tracking-tighter leading-none">97</span>
+                                <span class="text-2xl font-black text-white self-end mb-3 ml-0.5">,00</span>
+                            </div>
+
+                            <!-- Linha divisória com glow -->
+                            <div class="w-full flex items-center gap-3 my-6">
+                                <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+                                <div class="w-2 h-2 rotate-45 bg-white/10 border border-white/10"></div>
+                                <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+                            </div>
+                            <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/25 -mt-3 mb-6">O que você recebe</p>
+
+                            <!-- 4. BLOCOS DE ENTREGÁVEIS -->
+                            <div class="w-full grid grid-cols-2 gap-3 mb-7">
+
+                                <!-- Bloco: Treinamento -->
+                                <div class="deliverable-block rounded-2xl p-4 border border-[#A8203E]/20 bg-[#A8203E]/[0.04] hover:bg-[#A8203E]/[0.07] transition-colors duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div class="w-7 h-7 rounded-lg bg-[#A8203E]/15 border border-[#A8203E]/25 flex items-center justify-center flex-shrink-0">
+                                            <!-- Icon: Academic cap outline -->
+                                            <svg class="w-3.5 h-3.5 text-[#C4284A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-[9px] font-black uppercase tracking-[0.2em] text-[#C4284A]">Treinamento</span>
+                                    </div>
+                                    <ul class="space-y-1.5">
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-brand-orange mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(249,115,22,0.8)]"></span>
+                                            <span class="text-[10px] text-brand-orange font-bold uppercase tracking-wider drop-shadow-md leading-tight">6 módulos completos</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">Passo a passo inicial</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">Duplicação de operação</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Bloco: Ferramentas -->
+                                <div class="deliverable-block rounded-2xl p-4 border border-[#A8203E]/20 bg-[#A8203E]/[0.04] hover:bg-[#A8203E]/[0.07] transition-colors duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div class="w-7 h-7 rounded-lg bg-[#A8203E]/15 border border-[#A8203E]/25 flex items-center justify-center flex-shrink-0">
+                                            <!-- Icon: Wrench / tool outline -->
+                                            <svg class="w-3.5 h-3.5 text-[#C4284A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-[9px] font-black uppercase tracking-[0.2em] text-[#C4284A]">Ferramentas</span>
+                                    </div>
+                                    <ul class="space-y-1.5">
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">Estrutura de lives semanais</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">Estratégia de vendas WhatsApp</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">Produção de conteúdo</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Bloco: Estratégia -->
+                                <div class="deliverable-block rounded-2xl p-4 border border-[#A8203E]/20 bg-[#A8203E]/[0.04] hover:bg-[#A8203E]/[0.07] transition-colors duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div class="w-7 h-7 rounded-lg bg-[#A8203E]/15 border border-[#A8203E]/25 flex items-center justify-center flex-shrink-0">
+                                            <!-- Icon: Trending up outline -->
+                                            <svg class="w-3.5 h-3.5 text-[#C4284A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-[9px] font-black uppercase tracking-[0.2em] text-[#C4284A]">Estratégia</span>
+                                    </div>
+                                    <ul class="space-y-1.5">
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">14 bases de conteúdo VDA</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">Estratégia de escala</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">14 produtos validados</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Bloco: Materiais -->
+                                <div class="deliverable-block rounded-2xl p-4 border border-[#A8203E]/20 bg-[#A8203E]/[0.04] hover:bg-[#A8203E]/[0.07] transition-colors duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div class="w-7 h-7 rounded-lg bg-[#A8203E]/15 border border-[#A8203E]/25 flex items-center justify-center flex-shrink-0">
+                                            <!-- Icon: Package / box outline -->
+                                            <svg class="w-3.5 h-3.5 text-[#C4284A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0v10l-8 4m0-14L4 17m8 4V10"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-[9px] font-black uppercase tracking-[0.2em] text-[#C4284A]">Materiais</span>
+                                    </div>
+                                    <ul class="space-y-1.5">
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">mais de 20 produtos premium</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">70 textos · 25 imagens</span>
+                                        </li>
+                                        <li class="flex items-start gap-1.5">
+                                            <span class="w-[3px] h-[3px] rounded-full bg-white/30 mt-1.5 flex-shrink-0"></span>
+                                            <span class="text-[10px] text-white/60 leading-tight">5 vídeos + 40 áudios</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <!-- TITLE BONUS -->
+                            <div class="w-full flex justify-center items-center flex-col mb-7 -mt-2">
+                                <span class="text-[#21c55e] text-2xl font-light mb-1.5 leading-none drop-shadow-[0_0_8px_rgba(33,197,94,0.6)]">+</span>
+                                <h4 class="text-center font-body mb-2.5 flex flex-col items-center max-w-[90%] sm:max-w-[85%] mx-auto mt-0.5">
+                                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-orange text-[14px] sm:text-[15px] font-black uppercase tracking-[0.15em] leading-none mb-1.5 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+                                        4 Bônus Gratuito
+                                    </span>
+                                    <span class="block text-[9.5px] sm:text-[10px] text-slate-300 font-semibold uppercase tracking-wider leading-[1.6]">
+                                        Eu e meu time vendemos até <strong class="text-brand-orange drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">2 mil reais</strong> todos os dias direto no Whatsapp
+                                    </span>
+                                </h4>
+                                <p class="text-center text-[10px] sm:text-[11px] font-body text-white/50 font-medium tracking-wide mt-3.5 sm:mt-4">
+                                    Parcelado em até <strong class="text-white/80 font-bold">12x de R$ 8,08</strong> para esse preço promocional.
+                                </p>
+                            </div>
+
+                            <!-- 5. CTA BUTTON -->
+                            <a href="https://pay.kiwify.com.br/o0R3EwA"
+                                class="block w-full text-center py-4 px-6 rounded-2xl font-black text-[13px] sm:text-[14px] tracking-wide text-white uppercase
+                                       bg-[#21c55e] 
+                                       shadow-[0_0_30px_rgba(33,197,94,0.35),0_0_60px_rgba(33,197,94,0.15)]
+                                       hover:shadow-[0_0_40px_rgba(33,197,94,0.55),0_0_80px_rgba(33,197,94,0.25)]
+                                       hover:scale-[1.04] hover:bg-[#1daf52]
+                                       transition-all duration-300 ease-out
+                                       active:scale-[0.98]">
+                                SIM, QUERO FAZER MINHA INSCRIÇÃO AGORA!
+                            </a>
+
+                            <!-- 6. SEGURANÇA -->
+                            <div class="flex items-center justify-center gap-2 mt-5">
+                                <svg class="w-3.5 h-3.5 text-[#21c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                                <span class="text-[10px] text-white/35 font-medium tracking-wide">Transação Segura e Criptografada</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Garantia Section -->
+    <section class="w-full py-12 md:py-16 relative bg-[#0f141e] border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+            <div
+                class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col md:flex-row items-center gap-6 md:gap-8 relative overflow-hidden">
+
+                <!-- Glowing effect -->
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-slate-500/10 rounded-full blur-[80px] pointer-events-none">
+                </div>
+
+                <div class="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 relative flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-slate-300 relative z-10" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <!-- Background starburst for the badge -->
+                    <div
+                        class="absolute inset-0 bg-slate-600/20 rounded-full flex items-center justify-center animate-[pulse_3s_infinite]">
+                        <div
+                            class="w-full h-full border-2 border-dashed border-slate-500/30 rounded-full animate-[spin_10s_linear_infinite]">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-left relative z-10 flex flex-col items-center md:items-start">
+                    <h2 class="font-heading text-2xl md:text-3xl font-bold mb-3 text-slate-100">7 Dias de <span
+                            class="text-brand-orange">Garantia Total</span>.</h2>
+                    <p class="text-brand-gray2 text-sm leading-relaxed max-w-xl mx-auto md:mx-0">
+                        Seu risco é absolutamente zero. Caso você não goste da estrutura, não se adapte ao conteúdo ou
+                        simplesmente queira a devolução do seu dinheiro por qualquer motivo, basta solicitar via
+                        formulário ou no WhatsApp de suporte que realizaremos o reembolso <strong>100% integral</strong>
+                        do valor pago.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section inside the same bg -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 md:mt-28 mb-8 relative z-10 reveal" style="transition-delay: 200ms;">
+            
+            <div class="flex items-center justify-center gap-4 mb-10 md:mb-12">
+                <div class="h-[1px] w-12 md:w-20 bg-gradient-to-r from-transparent to-brand-orange/40"></div>
+                <h3 class="font-heading text-2xl md:text-3xl font-bold text-center text-white drop-shadow-md">FAQ - Perguntas e Respostas</h3>
+                <div class="h-[1px] w-12 md:w-20 bg-gradient-to-l from-transparent to-brand-orange/40"></div>
+            </div>
+
+            <div class="flex flex-col gap-3 md:gap-4 relative overflow-hidden">
+                
+                <!-- FAQ Item 1 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span>Preciso saber vender?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        Não precisa saber vender, vamos explicar o passo a passo de como vendemos até todos os dias no Whatsapp. O que vende é a estratégia, o material para enviar enquanto está fazendo a venda e é claro o produto escolhido.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span>Eu preciso ter o produto para vender?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        Vendemos como indicação. O produto que vamos vender é de outra pessoa e recebemos por isso.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span class="pr-4">Eu não sei como conseguir clientes no whatsapp para fazer vendas. Serviria pra mim?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        Sim! Você terá acesso ao curso e também ao painel de controle da VDA. Existe todo um passo a passo que precisa ser realizado sem mudar nada. Dentro da VDA vamos lhe ensinar como conseguir os clientes e o melhor, como convencer na conversa transformando o interessado em comprador.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span class="pr-4">Já fiz alguns cursos, o que a VDA tem de diferente?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        VDA - Venda Direta Automática. Estamos oferecendo para todos a possibilidade de vender produtos vencedores pelo whatsapp, sendo possível vender todos os dias. Disponibilizamos todo o material que usamos em todas as vendas: áudio, vídeo, texto e imagens. Tudo que estamos fazendo para realizar vendas nós ensinamos dentro da VDA. Além disso, todo aluno da VDA tem prioridade antecipada para vender produtos premium que não estão disponíveis em outros cursos, sendo assim dedicado da grade de produtos da VDA.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 5 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span>Preciso saber anunciar?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        Não precisa! Não é obrigatório criar anúncios. Claro que anunciar vai ajudar a escalar, mas iniciamos com o que chamamos de tráfego orgânico, ou seja, sem anúncios no início. Ensinamos o tutorial básico que funciona quando chegar a hora de anunciar e todo o passo a passo está dentro da VDA.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 6 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span class="pr-4">Posso dividir meu acesso com outra pessoa?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        Não! Cada usuário tem seu acesso individual.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 7 -->
+                <details class="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden open:bg-white/[0.06] hover:bg-white/[0.05] transition-all duration-300">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer list-none p-5 md:p-6 text-[13px] md:text-[15px] text-slate-100 hover:text-brand-orange transition-colors [&::-webkit-details-marker]:hidden select-none">
+                        <span class="pr-4">O que é Painel de Controle VDA?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-brand-orange shrink-0">
+                            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-400 text-xs md:text-[14px] px-5 md:px-6 pb-5 md:pb-6 leading-relaxed font-light border-t border-white/5 pt-4 mt-1">
+                        O Painel de Controle da VDA é um painel pessoal de usuário com as escolhas de produtos, os materiais de apoio de whatsapp, notificações, lives e suporte em grupo. Dentro do painel o aluno consegue realizar todas as tarefas da área de membros VDA.
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="w-full py-8 md:py-10 bg-black border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col justify-center items-center gap-6 text-center">
+
+                <div class="flex flex-col gap-1">
+                    <p class="font-heading text-2xl font-bold text-slate-300 tracking-wider">VDA</p>
+                    <p class="text-xs text-brand-gray2">Venda Direta Automática &copy; 2024</p>
+                </div>
+
+                <div class="flex flex-col items-center gap-4 text-sm text-brand-gray2 transition-colors">
+                    <div class="flex flex-wrap items-center justify-center gap-6">
+                        <a href="#" class="hover:text-brand-orange transition-colors">Política de Privacidade</a>
+                        <a href="#" class="hover:text-brand-orange transition-colors">Termos de Uso</a>
+                    </div>
+                    <a href="mailto:contato@vdabr.com.br"
+                        class="flex items-center gap-2 hover:text-slate-200 bg-white/5 py-2 px-6 rounded-full border border-white/10 mt-2 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                        contato@vdabr.com.br
+                    </a>
+                </div>
+
+            </div>
+            <div
+                class="mt-8 md:mt-10 text-center text-[9px] md:text-[10px] text-brand-gray2/40 max-w-3xl mx-auto leading-relaxed border-t border-white/5 pt-6">
+                Este site não faz parte do website do Facebook ou do Facebook Inc. Além disso, este site não é endossado
+                pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc.
+            </div>
+        </div>
+    </footer>
+
+    <!-- External API Scripts -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="./src/main.js"></script>
+</body>
+
+</html>

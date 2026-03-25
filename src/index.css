@@ -1,0 +1,272 @@
+/* Minimal custom CSS. Most styling done via Tailwind utilities. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .glass {
+        background: rgba(21, 28, 44, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-strong {
+        background: rgba(11, 15, 25, 0.8);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .text-glow {
+        text-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+    }
+}
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* Global smooth scrolling for desktop/mobile */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+}
+
+body {
+    overscroll-behavior-y: contain;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0B0F19;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+}
+
+/* Smooth reveal animation classes used by main.js */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Premium Logo Animation (Option A - Static Glow Pulse) */
+.logo-float-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    animation: ethereal-pulse 5s ease-in-out infinite;
+}
+
+
+@keyframes ethereal-pulse {
+    0% {
+        filter: drop-shadow(0 15px 15px rgba(249, 115, 22, 0.15));
+    }
+
+    50% {
+        filter: drop-shadow(0 25px 25px rgba(249, 115, 22, 0.45));
+    }
+    100% {
+        filter: drop-shadow(0 15px 15px rgba(249, 115, 22, 0.15));
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-8px) scale(1.01); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+.card-item {
+    animation: drift 12s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes drift {
+    0% { transform: translateY(0px) scale(1); }
+    25% { transform: translateY(-4px) scale(1.006); }
+    50% { transform: translateY(0px) scale(1.003); }
+    75% { transform: translateY(-2px) scale(1.004); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+@keyframes card-glow {
+    0%, 100% { box-shadow: 0 8px 30px rgba(12, 24, 48, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+    33% { box-shadow: 0 12px 40px rgba(28, 118, 198, 0.35), inset 0 0 0 1px rgba(249, 115, 22, 0.16); }
+    66% { box-shadow: 0 12px 40px rgba(46, 162, 213, 0.35), inset 0 0 0 1px rgba(34, 211, 238, 0.16); }
+}
+
+.bonus-cards {
+    position: relative;
+    z-index: 1;
+}
+
+.bonus-cards::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at top, rgba(99, 102, 241, 0.16), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.13), transparent 40%);
+    opacity: 0.85;
+    transform: scale(1.02);
+    filter: blur(5px);
+}
+
+.bonus-cards h4 {
+    color: #CBD5E1;
+}
+
+.bonus-cards h3 {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #F8FAFC;
+    font-size: 1.35rem;
+    text-shadow: 0 0 18px rgba(255, 179, 25, 0.35);
+    animation: title-glow 3.8s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+    0%, 100% { filter: brightness(0.98); }
+    50% { filter: brightness(1.22); }
+}
+
+.bonus-cards h4 strong {
+    color: #FBBF24 !important;
+    text-shadow: 0 0 16px rgba(251, 191, 36, 0.4);
+}
+
+.bonus-cards .card-item {
+    animation: drift 12s ease-in-out infinite alternate, card-glow 9s ease-in-out infinite;
+    box-shadow: 0 8px 30px rgba(5, 19, 43, 0.45);
+    transition: transform 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
+}
+
+.bonus-cards .card-item:hover {
+    transform: translateY(-1px) scale(1.008);
+    box-shadow: 0 13px 30px rgba(37, 86, 162, 0.6);
+}
+
+/* Bonus Plus Icon — Vibrant Metallic Orange */
+.bonus-plus-icon {
+    background: linear-gradient(135deg, #F97316 0%, #FBBF24 40%, #F97316 60%, #EA580C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6)) drop-shadow(0 0 20px rgba(249, 115, 22, 0.25));
+    animation: plus-pulse 2.8s ease-in-out infinite;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+@keyframes plus-pulse {
+    0% {
+        filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4)) drop-shadow(0 0 16px rgba(249, 115, 22, 0.15));
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.8)) drop-shadow(0 0 28px rgba(249, 115, 22, 0.35));
+        transform: scale(1.15);
+        opacity: 1;
+    }
+    100% {
+        filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4)) drop-shadow(0 0 16px rgba(249, 115, 22, 0.15));
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* ================================================
+   PREMIUM PRICING CARD — Animated Gradient Border
+   ================================================ */
+
+/* Rotating conic gradient border */
+.pricing-card-border {
+    background: conic-gradient(
+        from var(--border-angle, 0deg),
+        #F97316 0%,
+        #0ea5e9 33%,
+        #21c55e 66%,
+        #F97316 100%
+    );
+    animation: border-rotate 5s linear infinite;
+}
+
+@property --border-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes border-rotate {
+    to { --border-angle: 360deg; }
+}
+
+/* Fallback for browsers without @property support */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+    .pricing-card-border {
+        background: linear-gradient(135deg, #F97316, #0ea5e9, #21c55e);
+    }
+}
+
+/* Price number glow — pulsing */
+.pricing-price-glow {
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.25),
+        0 0 50px rgba(249, 115, 22, 0.18),
+        0 0 100px rgba(249, 115, 22, 0.1);
+    animation: price-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes price-glow-pulse {
+    0%, 100% {
+        text-shadow:
+            0 0 20px rgba(255, 255, 255, 0.25),
+            0 0 50px rgba(249, 115, 22, 0.18),
+            0 0 100px rgba(249, 115, 22, 0.1);
+    }
+    50% {
+        text-shadow:
+            0 0 30px rgba(255, 255, 255, 0.40),
+            0 0 70px rgba(249, 115, 22, 0.30),
+            0 0 120px rgba(249, 115, 22, 0.18);
+    }
+}
+
+/* Noise texture via SVG data URI */
+.pricing-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+    background-repeat: repeat;
+}
